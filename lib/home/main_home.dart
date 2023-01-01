@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:learning/widgets/bigText.dart';
-import 'package:learning/widgets/bottomNavbar.dart';
+import 'package:learning/widgets/messages.dart';
+import 'package:learning/widgets/notifIcon.dart';
 import 'package:learning/widgets/carouselHome.dart';
 import 'package:learning/widgets/slideNavbar.dart';
 import 'package:learning/widgets/smallText.dart';
@@ -31,9 +32,8 @@ class _MainHomeClothesState extends State<MainHomeClothes> {
             ],
           ),
           actions: [
-            bottomNavbar(
+            notifIcon(
               text: "Notifications",
-              iconData: Icons.notifications_outlined,
               notifCount: 0,
               onTap: () {},
             )
@@ -154,6 +154,9 @@ class _MainHomeClothesState extends State<MainHomeClothes> {
             GButton(
               icon: Icons.mail_outline,
               text: "Messages",
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const messages()));
+              },
             ),
           ]
         ),

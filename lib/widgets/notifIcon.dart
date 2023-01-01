@@ -3,13 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:learning/widgets/bigText.dart';
 import 'package:learning/widgets/smallText.dart';
 
-class bottomNavbar extends StatelessWidget {
-  final IconData iconData;
+class notifIcon extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
   final int notifCount;
-  bottomNavbar({Key? key, required this.onTap, 
-    required this.text, required this.iconData,
+  notifIcon({Key? key, required this.onTap, 
+    required this.text,
     required this.notifCount
     }): super(key: key);
 
@@ -26,21 +25,21 @@ class bottomNavbar extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(this.iconData),
+                Icon(this.notifCount >= 1 ? Icons.notifications_on_outlined : Icons.notifications_outlined),
                 Text(text, overflow: TextOverflow.ellipsis)
               ],
             ),
             Positioned(
-              top: 4,
-              right: 10,
+              top: 5,
+              right: 23,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                width: 5,
+                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.blueAccent
                 ),
                 alignment: Alignment.center,
-                child: textSmall(text: '$notifCount', color: Colors.white,),
+                child: this.notifCount >=1 ? textSmall(text: '$notifCount', color: Colors.white,) : null
               ),
             )
           ],
