@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:learning/widgets/bigText.dart';
-import 'package:learning/widgets/messages.dart';
+import 'package:learning/widgets/navbarBack.dart';
 import 'package:learning/widgets/notifIcon.dart';
 import 'package:learning/widgets/carouselHome.dart';
 import 'package:learning/widgets/slideNavbar.dart';
@@ -34,11 +34,12 @@ class _MainHomeClothesState extends State<MainHomeClothes> {
           actions: [
             notifIcon(
               text: "Notifications",
-              notifCount: 0,
+              notifCount: 1,
               onTap: () {},
             )
           ]
         ),
+        drawerEnableOpenDragGesture: true,
         drawer: Drawer(
           child: SingleChildScrollView(
             child: Column(
@@ -155,7 +156,7 @@ class _MainHomeClothesState extends State<MainHomeClothes> {
               icon: Icons.mail_outline,
               text: "Messages",
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const messages()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const navbarBack()));
               },
             ),
           ]
