@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning/home/main_home.dart';
+import 'package:learning/widgets/splashScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainHomeClothes(),
+      home: splashScreen(),
     );
   }
 }
