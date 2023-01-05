@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:learning/page/messages/messages.dart';
 import 'package:learning/widgets/bigText.dart';
-import 'package:learning/widgets/navbarBack.dart';
 import 'package:learning/widgets/notifIcon.dart';
 import 'package:learning/widgets/carouselHome.dart';
 import 'package:learning/widgets/slideNavbar.dart';
@@ -158,7 +158,7 @@ class _MainHomeClothesState extends State<MainHomeClothes> {
               icon: Icons.mail_outline,
               text: "Messages",
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const navbarBack()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const messagesPage()));
               },
             ),
           ]
