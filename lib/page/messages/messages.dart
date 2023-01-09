@@ -1,26 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:learning/api/messagesApi.dart';
+import 'package:learning/class/messagesClass.dart';
 import 'package:learning/page/home/main_home.dart';
 import 'package:learning/widgets/bigText.dart';
 import 'package:learning/widgets/smallText.dart';
-import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
-// Future<Commments> fetchComment() async {
-//   final response = await http.get(Uri.parse("//jsonplaceholder.typicode.com/comments"));
+class messagesPage extends StatelessWidget {
+  final MessagesApi messagesApi = MessagesApi();
 
-//   if(response.statusCode == 200){
-//     return 
-//   }
-// }
-class messagesPage extends StatefulWidget {
-  const messagesPage({Key? key}) : super(key: key);
-
-  @override
-  _MessagesPageState createState() => _MessagesPageState();
-}
-
-class _MessagesPageState extends State<messagesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,13 +20,32 @@ class _MessagesPageState extends State<messagesPage> {
         ),
         title: bigText(text: "Back", color: Color.fromARGB(255, 11, 32, 68),),
       ),
-      body: Container(
-        child: Row(
-          children: [
-            textSmall(text: "testing")
-          ],
-        ),
-      ),
+      body: FutureBuilder(
+        future: messagesApi.getComments(),
+        builder: (BuildContext context, AsyncSnapshot<List<Comments>> snapshot) {
+          if(snapshot.hasData){
+            List<Comments> comments = snapshot.requireData;
+            return ListView(
+              children: comments.map((Comments comments) => 
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        bigText(text: comments.name, color: Color(0xDD000000),),
+                        textSmall(text: comments.body, color: Colors.black54,),
+                      ],
+                    )
+                  ],
+                ),
+              ).toList()
+            );
+          }else{
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      )
     );
   }
 }

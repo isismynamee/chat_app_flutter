@@ -158,7 +158,7 @@ class _MainHomeClothesState extends State<MainHomeClothes> {
               icon: Icons.mail_outline,
               text: "Messages",
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const messagesPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  messagesPage()));
               },
             ),
           ]
