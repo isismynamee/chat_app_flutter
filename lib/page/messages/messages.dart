@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:learning/api/messagesApi.dart';
 import 'package:learning/class/messagesClass.dart';
 import 'package:learning/page/home/main_home.dart';
+import 'package:learning/page/messages/DetailMessages.dart';
 import 'package:learning/widgets/bigText.dart';
 import 'package:learning/widgets/smallText.dart';
 
@@ -13,7 +14,7 @@ class messagesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new_outlined),
+          icon: Icon(Icons.arrow_back_ios_new_outlined, color: Colors.black,),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => MainHomeClothes()));
           },
@@ -27,15 +28,31 @@ class messagesPage extends StatelessWidget {
             List<Comments> comments = snapshot.requireData;
             return ListView(
               children: comments.map((Comments comments) => 
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        bigText(text: comments.name, color: Color(0xDD000000),),
-                        textSmall(text: comments.body, color: Colors.black54,),
-                      ],
-                    )
-                  ],
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage("assets/image/maxresdefault.jpg"),
+                  ),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                        bigText(text: comments.email, color: Color(0xDD000000),),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(comments.body, maxLines: 1, )
+                          ],
+                        ), 
+                    ],
+                  ),
+                  // onLongPress: () => ,
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => DetailMessage(
+                        comment: comments,
+                      ),
+                    ),
+                  ),
                 ),
               ).toList()
             );
