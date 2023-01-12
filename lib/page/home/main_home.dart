@@ -1,13 +1,9 @@
-import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:learning/page/Add/addData.dart';
 import 'package:learning/page/messages/messages.dart';
+import 'package:learning/page/search/Search.dart';
 import 'package:learning/widgets/bigText.dart';
 import 'package:learning/widgets/notifIcon.dart';
-import 'package:learning/widgets/carouselHome.dart';
 import 'package:learning/widgets/slideNavbar.dart';
 import 'package:learning/widgets/smallText.dart';
 
@@ -20,6 +16,17 @@ class MainHomeClothes extends StatefulWidget {
 
 class _MainHomeClothesState extends State<MainHomeClothes> {
   @override
+  List pages = [
+    SearchData(),
+    AddData(),
+    messagesPage(),
+  ];
+  int currentIndex = 0;
+  void onTap(int index){
+    setState(() {
+      currentIndex = index;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -83,13 +90,6 @@ class _MainHomeClothesState extends State<MainHomeClothes> {
                     
                   },
                 ),
-                // ListTile(
-                //   leading: Icon(Icons.wallet_outlined),
-                //   title: textSmall(text: "Your Balance"),
-                //   onTap: () {
-                    
-                //   },
-                // ),
                 ListTile(
                   leading: Icon(Icons.settings_outlined),
                   title: textSmall(text: "Settings"),
@@ -99,70 +99,21 @@ class _MainHomeClothesState extends State<MainHomeClothes> {
                 ),
               ],
             )
-            ),
+          ),
         ),
-        body: Column(
-          children: [
-            Container(
-              child: Container(
-                    margin: EdgeInsets.only(top: 15, left: 10, bottom: 15, right:10),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Row(
-                                // mainAxisAlignment: MainAxisAlignment.space
-                                children:[
-                                  SizedBox(
-                                    height: 15, width: 15,
-                                    child: 
-                                      SvgPicture.asset("assets/svg/shoes.svg")
-                                  ),
-                                  bigText(text: "Shoes", color: Color(0xFF311B92)),
-                                  textSmall(text: "Finding"),
-                              ]),
-                            ],
-                          ),
-                        ]
-                    )
-                ),
-            ),
-            CarouselHome(),
-          ]
-        ),
-        bottomNavigationBar: 
-        GNav(
-          iconSize: 18,
-          gap: 0,
-          tabBorderRadius: 0,
-          backgroundColor: Colors.blueAccent[700]!,
-          tabBackgroundColor: Colors.white,
-          rippleColor: Colors.black,
-          curve: Curves.easeInOutSine,
-          hoverColor: Colors.grey[300]!,
-          tabs: [
-            GButton(
-              icon: Icons.home_outlined,
-              text: "Home",
-            ),
-            GButton(
-              icon: Icons.search_outlined,
-              text: "Search",
-            ),
-            GButton(
-              icon: Icons.add_circle_outline_outlined,
-              text: "Add",
-            ),
-            GButton(
-              icon: Icons.mail_outline,
-              text: "Messages",
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>  messagesPage()));
-              },
-            ),
-          ]
-        ),
+        body: pages[currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey[700],
+          currentIndex: currentIndex,
+          onTap: onTap,
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home_outlined),label: "Home", backgroundColor: Colors.white),
+            BottomNavigationBarItem(icon: Icon(Icons.search_outlined),label: "Search", backgroundColor: Colors.white),
+            BottomNavigationBarItem(icon: Icon(Icons.mail_outline_outlined),label: "Message", backgroundColor: Colors.white),
+            // BottomNavigationBarItem(icon: Icon(Icons.home_outlined),label: "Add", backgroundColor: Colors.white),
+          ],
+        )
     );
   }
 }

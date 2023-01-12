@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:learning/api/messagesApi.dart';
-import 'package:learning/class/messagesClass.dart';
+import 'package:learning/class/Message/messagesClass.dart';
+import 'package:learning/class/NavbarBottom/navbarBottomClass.dart';
+import 'package:learning/class/NavbarBottom/navbarBottomMethods.dart';
 import 'package:learning/page/home/main_home.dart';
 import 'package:learning/page/messages/DetailMessages.dart';
 import 'package:learning/widgets/bigText.dart';
@@ -8,19 +10,11 @@ import 'package:learning/widgets/smallText.dart';
 
 class messagesPage extends StatelessWidget {
   final MessagesApi messagesApi = MessagesApi();
+  List<String> Navbar = ['Home', 'Search', 'Add', 'Messages'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new_outlined, color: Colors.black,),
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => MainHomeClothes()));
-          },
-        ),
-        title: bigText(text: "Back", color: Color.fromARGB(255, 11, 32, 68),),
-      ),
       body: FutureBuilder(
         future: messagesApi.getComments(),
         builder: (BuildContext context, AsyncSnapshot<List<Comments>> snapshot) {
@@ -62,7 +56,7 @@ class messagesPage extends StatelessWidget {
             );
           }
         },
-      )
+      ),
     );
   }
 }

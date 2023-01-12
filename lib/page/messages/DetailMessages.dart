@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning/class/messagesClass.dart';
+import 'package:learning/class/Message/messagesClass.dart';
+import 'package:learning/page/home/main_home.dart';
 import 'package:learning/page/messages/messages.dart';
 import 'package:learning/widgets/bigText.dart';
 import 'package:learning/widgets/smallText.dart';
@@ -16,7 +17,7 @@ class DetailMessage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new_outlined, color: Colors.black),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => messagesPage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => MainHomeClothes()));
           },
         ),
         title:Row(
