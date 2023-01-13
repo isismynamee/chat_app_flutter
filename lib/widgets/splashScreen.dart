@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:learning/page/home/main_home.dart';
+import 'package:learning/page/navbar/Navbar.dart';
 import 'package:learning/widgets/bigText.dart';
 import 'package:learning/widgets/smallText.dart';
 
@@ -18,7 +18,7 @@ class _splashScreenState extends State<splashScreen> {
     super.initState();
 
     Timer(Duration(seconds: 2), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainHomeClothes()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavbarDynamic()));
     });
   }
   Widget build(BuildContext context) {

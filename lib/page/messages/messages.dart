@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:learning/api/messagesApi.dart';
 import 'package:learning/class/Message/messagesClass.dart';
-import 'package:learning/class/NavbarBottom/navbarBottomClass.dart';
-import 'package:learning/class/NavbarBottom/navbarBottomMethods.dart';
-import 'package:learning/page/home/main_home.dart';
 import 'package:learning/page/messages/DetailMessages.dart';
 import 'package:learning/widgets/bigText.dart';
-import 'package:learning/widgets/smallText.dart';
 
 class messagesPage extends StatelessWidget {
   final MessagesApi messagesApi = MessagesApi();
@@ -31,11 +27,8 @@ class messagesPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                         bigText(text: comments.email, color: Color(0xDD000000),),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(comments.body, maxLines: 1, )
-                          ],
+                        Container(
+                            child: Text(comments.body, maxLines: 1, overflow: TextOverflow.ellipsis,)
                         ), 
                     ],
                   ),

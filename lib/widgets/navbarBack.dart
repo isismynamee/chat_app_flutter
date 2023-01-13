@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:learning/page/home/main_home.dart';
+import 'package:learning/page/navbar/Navbar.dart';
 import 'package:learning/widgets/bigText.dart';
-import 'package:learning/widgets/smallText.dart';
 
 class navbarBack extends StatefulWidget {
   const navbarBack({Key? key}) : super(key: key);
@@ -19,7 +17,7 @@ class _NavbarBack extends State<navbarBack> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new_outlined),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => MainHomeClothes()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => NavbarDynamic()));
           },
         ),
         title: bigText(text: "Back", color: Color.fromARGB(255, 11, 32, 68),),

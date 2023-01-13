@@ -7,14 +7,14 @@ import 'package:learning/widgets/notifIcon.dart';
 import 'package:learning/widgets/slideNavbar.dart';
 import 'package:learning/widgets/smallText.dart';
 
-class MainHomeClothes extends StatefulWidget {
-  const MainHomeClothes({Key? key}) : super(key: key);
+class NavbarDynamic extends StatefulWidget {
+  const NavbarDynamic({Key? key}) : super(key: key);
 
   @override
-  State<MainHomeClothes> createState() => _MainHomeClothesState();
+  State<NavbarDynamic> createState() => _NavbarDynamicState();
 }
 
-class _MainHomeClothesState extends State<MainHomeClothes> {
+class _NavbarDynamicState extends State<NavbarDynamic> {
   @override
   List pages = [
     SearchData(),
