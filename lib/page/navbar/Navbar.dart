@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning/page/Add/addData.dart';
+import 'package:learning/page/home/home.dart';
 import 'package:learning/page/messages/messages.dart';
 import 'package:learning/page/search/Search.dart';
 import 'package:learning/widgets/bigText.dart';
@@ -17,6 +18,7 @@ class NavbarDynamic extends StatefulWidget {
 class _NavbarDynamicState extends State<NavbarDynamic> {
   @override
   List pages = [
+    Home(),
     SearchData(),
     AddData(),
     messagesPage(),
@@ -110,8 +112,8 @@ class _NavbarDynamicState extends State<NavbarDynamic> {
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home_outlined),label: "Home", backgroundColor: Colors.white),
             BottomNavigationBarItem(icon: Icon(Icons.search_outlined),label: "Search", backgroundColor: Colors.white),
+            BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline_outlined),label: "Add", backgroundColor: Colors.white),
             BottomNavigationBarItem(icon: Icon(Icons.mail_outline_outlined),label: "Message", backgroundColor: Colors.white),
-            // BottomNavigationBarItem(icon: Icon(Icons.home_outlined),label: "Add", backgroundColor: Colors.white),
           ],
         )
     );
