@@ -6,7 +6,6 @@ import 'package:learning/widgets/bigText.dart';
 
 class messagesPage extends StatelessWidget {
   final MessagesApi messagesApi = MessagesApi();
-  List<String> Navbar = ['Home', 'Search', 'Add', 'Messages'];
 
   @override
   Widget build(BuildContext context) {

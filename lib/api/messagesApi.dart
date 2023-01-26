@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:learning/class/Message/messagesClass.dart';
@@ -8,6 +9,7 @@ class MessagesApi {
 
   Future<List<Comments>> getComments() async {
     Response res = await get(Uri.parse(urlPlaceHolder));
+    log('data: $res');
     
     if(res.statusCode == 200){
       List<dynamic> body = jsonDecode(res.body);
