@@ -105,15 +105,15 @@ class _NavbarDynamicState extends State<NavbarDynamic> {
         ),
         body: pages[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.black,
+          selectedItemColor: Colors.white,
           unselectedItemColor: Colors.grey[700],
           currentIndex: currentIndex,
           onTap: onTap,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined),label: "Home", backgroundColor: Colors.white),
-            BottomNavigationBarItem(icon: Icon(Icons.search_outlined),label: "Search", backgroundColor: Colors.white),
-            BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline_outlined),label: "Add", backgroundColor: Colors.white),
-            BottomNavigationBarItem(icon: Icon(Icons.mail_outline_outlined),label: "Message", backgroundColor: Colors.white),
+            BottomNavigationBarItem(icon: Icon(Icons.home_outlined),label: "Home", backgroundColor: Colors.blue),
+            BottomNavigationBarItem(icon: Icon(Icons.search_outlined),label: "Search", backgroundColor: Colors.blue),
+            BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline_outlined),label: "Add", backgroundColor: Colors.blue),
+            BottomNavigationBarItem(icon: Icon(Icons.mail_outline_outlined),label: "Message", backgroundColor: Colors.blue),
           ],
         )
     );

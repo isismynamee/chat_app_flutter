@@ -1,58 +1,54 @@
-import 'dart:developer';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:learning/api/productsApi.dart';
 import 'package:learning/class/Products/ProductsClass.dart';
 import 'package:learning/widgets/ProductsList/detailProduct.dart';
 import 'package:learning/widgets/bigText.dart';
+import 'package:learning/widgets/card.dart';
 
-class ProductsList extends StatelessWidget {
-  final ProductsApi productsApi = ProductsApi();
+class productsList extends StatefulWidget {
+  const productsList({Key? key}) : super(key: key);
 
+  @override
+  State<productsList> createState() => productsListState();
+}
+
+class productsListState extends State<productsList> {
+  final ProductsApi _productsList = ProductsApi();
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FutureBuilder(
-        future: productsApi.getProducts(),
+      child: FutureBuilder<List<Products>>(
         builder: (BuildContext context, AsyncSnapshot<List<Products>> snapshot) {
-          if(snapshot.hasData){
+          if(snapshot.hasError){
+            return Center(
+              child: Text("Error " + snapshot.stackTrace.toString()),
+            );
+          }
+          if(snapshot.connectionState == ConnectionState.done){
             List<Products> products = snapshot.requireData;
-            log('${products}');
-            return ListView(
-              children: products.map((Products products) => 
-                ListTile(
-                  // leading: CircleAvatar(
-                  //   backgroundImage: NetworkImage(products.imageProducts),
-                  // ),
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                        bigText(text: products.title, color: Color(0xDD000000),),
-                        // Container(
-                        //     child: Text(products.description, maxLines: 1, overflow: TextOverflow.ellipsis,)
-                        // ), 
-                    ],
-                  ),
-                  onTap:() => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => DetailProduct(
-                        product: products,
-                      ),
-                    ),
-                  ),
-                ),
-              ).toList()
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                return CardLists(
+                  // price: snapshot.data![index].price,
+                  title: snapshot.data![index].title,
+                  description: snapshot.data![index].description,
+                  imageProducts: snapshot.data![index].imageProducts!,
+                  category: snapshot.data![index].category,
+                );
+              },
             );
           }else{
             return Container(
-              width: MediaQuery.of(context).size.width,
               child: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           }
         },
+        future: _productsList.productsList(),
       ),
     );
   }

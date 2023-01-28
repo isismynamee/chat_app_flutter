@@ -1,24 +1,29 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:learning/class/Products/ProductsClass.dart';
 
 class ProductsApi {
-  final String urlPlaceHolder = "https://fakestoreapi.com/products";
+  var data = [];
+  List<Products> results = [];
+  String urlProducts = "https://fakestoreapi.com/products";
 
-  Future<List<Products>> getProducts() async {
-    Response res = await get(Uri.parse(urlPlaceHolder));
-    print(res);
-    
-    if(res.statusCode == 200){
-      List<dynamic> body = jsonDecode(res.body);
-
-      List<Products> products = body.map(
-        (dynamic item) => Products.fromJson(item),
-      ).toList();
-      return products;
-    }else{
-      throw Products.fromJson(json.decode(res.body));
+  Future<List<Products>> productsList({String? query}) async {
+    var url = Uri.parse(urlProducts);
+    try {
+      var response = await http.get(url);
+      
+      if(response.statusCode == 200){
+        data = json.decode(response.body);
+        results = data.map((e) => Products.fromJson(e)).toList();
+        if(query != null) {
+          results = results.where((element) => element.title!.toLowerCase().contains((query.toLowerCase()))).toList();
+        }
+      }else{
+        print("something Error");
+      }
+    } on Exception catch (e) {
+      print('error: $e');
     }
+    return results;
   }
 }
