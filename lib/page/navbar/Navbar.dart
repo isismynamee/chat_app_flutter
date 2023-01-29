@@ -104,6 +104,7 @@ class _NavbarDynamicState extends State<NavbarDynamic> {
           ),
         ),
         body: pages[currentIndex],
+        backgroundColor: Colors.blueGrey[50],
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.grey[700],

@@ -2,7 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:learning/utils/text_color.dart';
 
 class CarouselHome extends StatefulWidget {
-  const CarouselHome({Key? key}) : super(key: key);
+  final imagePass;
+
+  CarouselHome({
+    Key? key,
+    required this.imagePass,
+  }): super(key: key);
 
   @override
   _CarouselHomeState createState() => _CarouselHomeState();
@@ -26,18 +31,18 @@ class _CarouselHomeState extends State<CarouselHome> {
     return Stack(
       children: [
         Container(
-      margin: EdgeInsets.only(bottom: 50),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        color: index.isEven ? Color(0xFF880E4F) : Color(0xFFE91E63),
-        // image: DecorationImage(
-        //   fit: BoxFit.fitWidth,
-        //   image: AssetImage(
-        //     "assets/image/orange_shirt.jpeg"
-        //   )
-        // )
-      ),
-    ),
+          margin: EdgeInsets.symmetric(vertical: 50),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: index.isEven ? Color(0xFF880E4F) : Color(0xFFE91E63),
+            image: DecorationImage(
+              fit: BoxFit.fitWidth,
+              image: NetworkImage(
+                widget.imagePass
+              )
+            )
+          ),
+        ),
       ],
     );
   }

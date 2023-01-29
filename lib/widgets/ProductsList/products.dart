@@ -32,7 +32,7 @@ class productsListState extends State<productsList> {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return CardLists(
-                  // price: snapshot.data![index].price,
+                  price: snapshot.data![index].price,
                   title: snapshot.data![index].title,
                   description: snapshot.data![index].description,
                   imageProducts: snapshot.data![index].imageProducts!,
@@ -42,8 +42,12 @@ class productsListState extends State<productsList> {
             );
           }else{
             return Container(
-              child: Center(
-                child: CircularProgressIndicator(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                  Text('\nLoad Data')
+                ],
               ),
             );
           }

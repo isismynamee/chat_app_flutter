@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning/widgets/ProductsList/detailProduct.dart';
 
 class CardLists extends StatelessWidget {
   final title;
@@ -18,45 +19,49 @@ class CardLists extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 100,
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => DetailProduct(
+                        title: title,
+                        category: category,
+                        description: description,
+                        imageProducts: imageProducts,
+                      ),
+                    ),
+                  ),
       child: Card(
-        margin: EdgeInsets.symmetric(vertical: 10),
-        child: Column(
-          children: [
-            Container(
-              // width: MediaQuery.of(context).size.width,
-              // height: MediaQuery.of(context).size.height * 0.35,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(imageProducts)
-                )
-              ),
-            ),
-            Container(
-              width: 300,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(title, maxLines: 1, overflow: TextOverflow.ellipsis,),
-                  Text(" - "),
-                  Text(category, maxLines: 1, overflow: TextOverflow.ellipsis,),
-                ],
-              ),
-            ),
-            Container(
-              child: Text(description, maxLines: 1, overflow: TextOverflow.ellipsis),
-            ),
-            // Text(price),
-            Container(
-              child: ElevatedButton(
-                  onPressed: () {}, 
-                  child: Text("Purchase"),
-                )
-            ),
-          ],
+        // color: Colors.blueGrey[50],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+            color: Colors.black
+          )
         ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Column(
+            children: [
+              Image(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.1,
+                image: NetworkImage(imageProducts)
+              ),
+              Container(
+                child: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
+              Text(price),
+              Container(
+                child: Text('Category: $category', maxLines: 1, overflow: TextOverflow.ellipsis,),
+                margin: EdgeInsets.only(bottom: 10),
+              ),
+              Container(
+                child: Text(description, maxLines: 1, overflow: TextOverflow.ellipsis),
+                margin: EdgeInsets.only(bottom: 10),
+              ),
+            ],
+          ),
+        )
       ),
     );
   }

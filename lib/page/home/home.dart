@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: productsList()
+      child: productsList(),
     );
   }
 }
