@@ -7,9 +7,11 @@ class CardLists extends StatelessWidget {
   final imageProducts;
   final category;
   final price;
+  final itemCount;
   
   CardLists({ 
     Key? key, 
+    this.itemCount,
     this.title, 
     this.description, 
     this.category,
@@ -24,6 +26,8 @@ class CardLists extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => DetailProduct(
                         title: title,
+                        price: price,
+                        itemCount: itemCount,
                         category: category,
                         description: description,
                         imageProducts: imageProducts,
@@ -48,13 +52,9 @@ class CardLists extends StatelessWidget {
                 image: NetworkImage(imageProducts)
               ),
               Container(
-                child: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontWeight: FontWeight.bold)),
+                child: Text("$title - $category", maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontWeight: FontWeight.bold)),
               ),
-              Text(price),
-              Container(
-                child: Text('Category: $category', maxLines: 1, overflow: TextOverflow.ellipsis,),
-                margin: EdgeInsets.only(bottom: 10),
-              ),
+              Text("\$"+price),
               Container(
                 child: Text(description, maxLines: 1, overflow: TextOverflow.ellipsis),
                 margin: EdgeInsets.only(bottom: 10),

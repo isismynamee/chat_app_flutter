@@ -6,6 +6,7 @@ import 'package:learning/class/Products/ProductsClass.dart';
 import 'package:learning/widgets/ProductsList/detailProduct.dart';
 import 'package:learning/widgets/bigText.dart';
 import 'package:learning/widgets/card.dart';
+import 'package:loadmore/loadmore.dart';
 
 class productsList extends StatefulWidget {
   const productsList({Key? key}) : super(key: key);
@@ -16,6 +17,18 @@ class productsList extends StatefulWidget {
 
 class productsListState extends State<productsList> {
   final ProductsApi _productsList = ProductsApi();
+  List<int> listDataProducts = [];
+  void load(){
+    setState(() {
+      listDataProducts.addAll(List.generate(5, (e) => e));
+      print("total Data: ${listDataProducts.length}");
+    });
+  }
+  Future<bool> _loadMore() async {
+    await Future.delayed(Duration(seconds: 0, milliseconds: 2000));
+    load();
+    return true;
+  }
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -28,17 +41,25 @@ class productsListState extends State<productsList> {
           }
           if(snapshot.connectionState == ConnectionState.done){
             List<Products> products = snapshot.requireData;
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                return CardLists(
-                  price: snapshot.data![index].price,
-                  title: snapshot.data![index].title,
-                  description: snapshot.data![index].description,
-                  imageProducts: snapshot.data![index].imageProducts!,
-                  category: snapshot.data![index].category,
-                );
-              },
+            return LoadMore(
+              whenEmptyLoad: true,
+              isFinish: snapshot.data!.length < snapshot.data!.length,
+              child: ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  return CardLists(
+                    itemCount: snapshot.data!.length,
+                    price: snapshot.data![index].price,
+                    title: snapshot.data![index].title,
+                    description: snapshot.data![index].description,
+                    imageProducts: snapshot.data![index].imageProducts!,
+                    category: snapshot.data![index].category,
+                  );
+                },
+              ), 
+              delegate: DefaultLoadMoreDelegate(),
+              textBuilder: DefaultLoadMoreTextBuilder.english,
+              onLoadMore: _loadMore,
             );
           }else{
             return Container(
