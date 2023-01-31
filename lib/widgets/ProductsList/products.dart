@@ -41,25 +41,18 @@ class productsListState extends State<productsList> {
           }
           if(snapshot.connectionState == ConnectionState.done){
             List<Products> products = snapshot.requireData;
-            return LoadMore(
-              whenEmptyLoad: true,
-              isFinish: snapshot.data!.length < snapshot.data!.length,
-              child: ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  return CardLists(
-                    itemCount: snapshot.data!.length,
-                    price: snapshot.data![index].price,
-                    title: snapshot.data![index].title,
-                    description: snapshot.data![index].description,
-                    imageProducts: snapshot.data![index].imageProducts!,
-                    category: snapshot.data![index].category,
-                  );
-                },
-              ), 
-              delegate: DefaultLoadMoreDelegate(),
-              textBuilder: DefaultLoadMoreTextBuilder.english,
-              onLoadMore: _loadMore,
+            return ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return CardLists(
+                  itemCount: snapshot.data!.length,
+                  price: snapshot.data![index].price,
+                  title: snapshot.data![index].title,
+                  description: snapshot.data![index].description,
+                  imageProducts: snapshot.data![index].imageProducts!,
+                  category: snapshot.data![index].category,
+                );
+              },
             );
           }else{
             return Container(
