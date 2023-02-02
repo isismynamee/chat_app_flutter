@@ -3,6 +3,7 @@ import 'package:learning/page/home/ProductsList/detailProduct.dart';
 
 class CardLists extends StatelessWidget {
   final title;
+  final rating;
   final description;
   final imageProducts;
   final category;
@@ -11,6 +12,7 @@ class CardLists extends StatelessWidget {
   
   CardLists({ 
     Key? key, 
+    this.rating,
     this.itemCount,
     this.title, 
     this.description, 
@@ -35,16 +37,16 @@ class CardLists extends StatelessWidget {
                     ),
                   ),
       child: Card(
-        // color: Colors.blueGrey[50],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
           side: BorderSide(
-            color: Colors.black
+            color: Colors.grey
           )
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Image(
                 width: MediaQuery.of(context).size.width,
@@ -57,7 +59,17 @@ class CardLists extends StatelessWidget {
               Text("\$"+price),
               Container(
                 child: Text(description, maxLines: 1, overflow: TextOverflow.ellipsis),
-                margin: EdgeInsets.only(bottom: 10),
+              ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                    size: 18,
+                  ),
+                  const SizedBox(width: 7),
+                  Text(rating.toString()),
+                ],
               ),
             ],
           ),

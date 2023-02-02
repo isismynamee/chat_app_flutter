@@ -26,18 +26,27 @@ class productsListState extends State<productsList> {
           }
           if(snapshot.connectionState == ConnectionState.done){
             List<Products> products = snapshot.requireData;
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                return CardLists(
-                  itemCount: snapshot.data!.length,
-                  price: snapshot.data![index].price,
-                  title: snapshot.data![index].title,
-                  description: snapshot.data![index].description,
-                  imageProducts: snapshot.data![index].imageProducts!,
-                  category: snapshot.data![index].category,
-                );
-              },
+            return Padding(
+              padding: EdgeInsets.all(5),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 300,
+                  childAspectRatio: 1,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10
+                ),
+                itemCount: snapshot.data!.length,
+                itemBuilder: (BuildContext context, index) {
+                  return CardLists(
+                    rating: snapshot.data![index].rating?.rate,
+                    category: snapshot.data![index].category,
+                    price: snapshot.data![index].price,
+                    imageProducts: snapshot.data![index].imageProducts,
+                    description: snapshot.data![index].description,
+                    title: snapshot.data![index].title,
+                  );
+                },
+              )
             );
           }else{
             return Container(

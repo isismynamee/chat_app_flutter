@@ -31,7 +31,7 @@ class DetailProduct extends StatelessWidget {
       appBar: AppBar(
 
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new_outlined, color: Colors.black),
+          icon: Icon(Icons.arrow_back_ios_new_outlined, color: Colors.grey[200]),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => NavbarDynamic()));
           },
@@ -41,16 +41,16 @@ class DetailProduct extends StatelessWidget {
       body: Column(
         children: [
           CarouselHome(imagePass: imageProducts, itemCount: itemCount,),
-          Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(title, style: TextStyle(fontWeight: FontWeight.bold,)),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             child: Text(description),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: ElevatedButton.icon(
                     onPressed: (){},
                     icon: Icon(Icons.add_shopping_cart_rounded),
@@ -58,7 +58,7 @@ class DetailProduct extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: ElevatedButton.icon(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.resolveWith((states) {
