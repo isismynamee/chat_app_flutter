@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learning/api/productsApi.dart';
 import 'package:learning/class/Products/ProductsClass.dart';
-import 'package:learning/widgets/ProductsList/products.dart';
+import 'package:learning/page/home/ProductsList/products.dart';
 import 'package:learning/widgets/card.dart';
 
 class Home extends StatefulWidget {
@@ -12,7 +12,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final ProductsApi _productsList = ProductsApi();
   @override
   Widget build(BuildContext context) {
     return Center(

@@ -30,7 +30,8 @@ class _NavbarDynamicState extends State<NavbarDynamic> {
     });
   }
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+      child: Scaffold(
         appBar: AppBar(
           title: Column(
             children: [
@@ -117,6 +118,7 @@ class _NavbarDynamicState extends State<NavbarDynamic> {
             BottomNavigationBarItem(icon: Icon(Icons.mail_outline_outlined),label: "Message", backgroundColor: Colors.blue),
           ],
         )
+      )
     );
   }
 }

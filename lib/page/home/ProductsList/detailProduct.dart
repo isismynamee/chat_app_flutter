@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:learning/class/Products/ProductsClass.dart';
 import 'package:learning/page/navbar/Navbar.dart';
-import 'package:learning/widgets/ProductsList/products.dart';
+import 'package:learning/page/home/ProductsList/products.dart';
 import 'package:learning/widgets/carouselHome.dart';
 
 class DetailProduct extends StatelessWidget {
