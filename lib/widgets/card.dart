@@ -56,19 +56,23 @@ class CardLists extends StatelessWidget {
               Container(
                 child: Text("$title - $category", maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontWeight: FontWeight.bold)),
               ),
-              Text("\$"+price),
               Container(
                 child: Text(description, maxLines: 1, overflow: TextOverflow.ellipsis),
               ),
               Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const Icon(
                     Icons.star,
-                    color: Colors.yellow,
+                    color: Colors.orange,
                     size: 18,
                   ),
                   const SizedBox(width: 7),
-                  Text(rating.toString()),
+                  Row(
+                    children: [
+                      Text("$rating - \$"+price),
+                    ],
+                  )
                 ],
               ),
             ],

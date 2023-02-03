@@ -4,7 +4,7 @@ import 'package:learning/class/Products/ProductsClass.dart';
 import 'package:learning/page/home/ProductsList/products.dart';
 
 class ProductsApi {
-  int PageData = 5;
+  int PageData = 1;
   void movePage(){
     PageData = PageData +1;
   }
