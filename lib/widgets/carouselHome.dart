@@ -34,12 +34,10 @@ class _CarouselHomeState extends State<CarouselHome> {
     return Stack(
       children: [
         Container(
-          // margin: EdgeInsets.symmetric(vertical: 50),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
-            color: index.isEven ? Color(0xFF880E4F) : Color(0xFFE91E63),
+            color: index.isEven ? Color.fromARGB(255, 255, 255, 255) : Color.fromARGB(255, 0, 0, 0),
             image: DecorationImage(
-              // scale: ,
               fit: BoxFit.contain,
               image: NetworkImage(
                 widget.imagePass

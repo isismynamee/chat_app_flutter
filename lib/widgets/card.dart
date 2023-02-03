@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning/page/home/ProductsList/detailProduct.dart';
+import 'package:learning/widgets/ratingProducts.dart';
 
 class CardLists extends StatelessWidget {
   final title;
@@ -27,6 +28,7 @@ class CardLists extends StatelessWidget {
       onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => DetailProduct(
+                        rating: rating,
                         title: title,
                         price: price,
                         itemCount: itemCount,
@@ -46,35 +48,34 @@ class CardLists extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.1,
                 image: NetworkImage(imageProducts)
               ),
+              Text("$title - $category", maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontWeight: FontWeight.bold)),
               Container(
-                child: Text("$title - $category", maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontWeight: FontWeight.bold)),
+                width: MediaQuery.of(context).size.width,
+                child: Text("\$$price"),
               ),
               Container(
-                child: Text(description, maxLines: 1, overflow: TextOverflow.ellipsis),
-              ),
-              Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Icon(
-                    Icons.star,
-                    color: Colors.orange,
-                    size: 18,
-                  ),
-                  const SizedBox(width: 7),
-                  Row(
-                    children: [
-                      Text("$rating - \$"+price),
-                    ],
-                  )
-                ],
-              ),
+                child: RatingProducts(
+                  rating: rating,
+                )
+              )
+              // Row(
+              //   children: [
+              //     const Icon(
+              //       Icons.star,
+              //       color: Colors.orange,
+              //       size: 18,
+              //     ),
+              //     const SizedBox(width: 7),
+              //     Text(rating.toString())
+              //   ],
+              // ),
             ],
           ),
         )
