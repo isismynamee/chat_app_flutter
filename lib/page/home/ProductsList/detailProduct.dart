@@ -29,9 +29,24 @@ class DetailProduct extends StatelessWidget {
     required this.price
   });
 
+  bool showConfirm = true;
+
+  void _openThis(BuildContext context){
+    showDialog(
+      context: context, 
+      builder: (BuildContext data){
+        return ModalConfirm(
+          icon: Icon(Icons.help_outline_outlined), 
+          title: "testing", 
+          body: "test body", 
+          // showModal: showConfirm
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool _OpenModal = false;
     return Scaffold(
       appBar: AppBar(
 
@@ -59,17 +74,18 @@ class DetailProduct extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     RatingProducts(rating: rating),
-                    Text(" $rating"),
+                    Text(rating.toString()),
+                    Column(
+                      children: [
+                        
                     GestureDetector(
                       onTap: () {
-                        
+                        showConfirm = true;
+                        showConfirm == true ? _openThis(context) : null ;
                       },
-                      child: ModalConfirm(
-                        icon: Icons.help_outline_outlined,
-                        body: Text("this data"),
-                        title: Text("Delete Data"),
-                        openModalConfirm: _OpenModal,
-                      ),
+                      child: Icon(Icons.help_outline_outlined)
+                    )
+                      ],
                     )
                   ],
                 ),

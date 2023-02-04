@@ -5,43 +5,17 @@ class ModalConfirm extends StatefulWidget {
   final icon;
   final title;
   final body;
-  final openModalConfirm;
+  // final bool? showModal;;
 
-  const ModalConfirm({
+ const ModalConfirm({
     Key? key,
     required this.icon,
     required this.title,
     required this.body,
-    required this.openModalConfirm,
+    // required this.showModal;,
   }) : super(key :key);
 
-  void _openThis(BuildContext context){
-    showDialog(
-      context: context, 
-      builder: (BuildContext data){
-        return AlertDialog(
-          title: Text(title),
-          content: Text("Are you sure want to delete $body?"),
-          actions: [
-            TextButton(
-              onPressed: (){
-                print("Cancel");
-                // setState(() {})
-              }, 
-              child: Text("Cancel")
-            ),
-            TextButton(
-              onPressed: (){
-                print("Yes");
-                // setState(() {})
-              }, 
-              child: Text("Yes")
-            )
-          ],
-        );
-      } 
-    );
-  }
+  
   @override
   State<ModalConfirm> createState() => _ModalConfirmState();
 }
@@ -49,11 +23,29 @@ class ModalConfirm extends StatefulWidget {
 class _ModalConfirmState extends State<ModalConfirm> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        
-      },
-      child: Icon(widget.icon)
+    return AlertDialog(
+      title: Text(widget.title.toString()),
+      content: Text("Are you sure want to delete ${widget.body.toString()}?"),
+      actions: [
+        TextButton(
+          onPressed: (){
+            print("Cancel");
+            Navigator.of(context).pop();
+            // setState(() {
+              
+            // });
+          }, 
+          child: Text("Cancel")
+        ),
+        TextButton(
+          onPressed: (){
+            print("Yes");
+            Navigator.of(context).pop();
+            // setState(() {})
+          }, 
+          child: Text("Yes")
+        )
+      ],
     );
   }
 }
