@@ -1,11 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:learning/class/Products/ProductsClass.dart';
 import 'package:learning/page/navbar/Navbar.dart';
-import 'package:learning/page/home/ProductsList/products.dart';
 import 'package:learning/widgets/carouselHome.dart';
-import 'package:learning/widgets/modalConfirm.dart';
+import 'package:learning/widgets/modal%20widgets/modalConfirm.dart';
+import 'package:learning/widgets/modal%20widgets/standarModal.dart';
 import 'package:learning/widgets/ratingProducts.dart';
 
 class DetailProduct extends StatelessWidget {
@@ -29,17 +28,23 @@ class DetailProduct extends StatelessWidget {
     required this.price
   });
 
-  bool showConfirm = true;
+  bool showConfirm = false;
 
   void _openThis(BuildContext context){
     showDialog(
       context: context, 
       builder: (BuildContext data){
-        return ModalConfirm(
-          icon: Icon(Icons.help_outline_outlined), 
-          title: "testing", 
-          body: "test body", 
-          // showModal: showConfirm
+        return StandarModal(
+          title: "Help", 
+          message: "Product rating's from another user",
+          closeModal: 
+              TextButton(
+                onPressed: () {
+                  print("close");
+                  Navigator.of(context).pop();
+                },
+                child: Text("Ok")
+              )
         );
       }
     );
@@ -66,25 +71,32 @@ class DetailProduct extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     RatingProducts(rating: rating),
-                    Text(rating.toString()),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(rating.toString()),
+                    ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        
-                    GestureDetector(
-                      onTap: () {
-                        showConfirm = true;
-                        showConfirm == true ? _openThis(context) : null ;
-                      },
-                      child: Icon(Icons.help_outline_outlined)
-                    )
+                        GestureDetector(
+                          onTap: () {
+                            showConfirm = true;
+                            showConfirm == true ? _openThis(context) : null ;
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Icon(Icons.help_outline_outlined, size: 15,),
+                          )
+                        )
                       ],
                     )
                   ],
@@ -118,7 +130,7 @@ class DetailProduct extends StatelessWidget {
             ),
             onPressed: (){},
             icon: Icon(Icons.shopping_cart_checkout_rounded,),
-            label: Text("Add to Cart", ),
+            label: Text("Checkout", ),
         ),
       ),
     );
