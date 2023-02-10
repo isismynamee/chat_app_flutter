@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:learning/class/Products/ProductsClass.dart';
-import 'package:learning/page/home/ProductsList/products.dart';
+import 'package:learning/page/search/ProductsList/products.dart';
 
 class ProductsApi {
   int PageData = 1;

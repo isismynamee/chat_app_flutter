@@ -51,10 +51,10 @@ class _AddDataState extends State<AddData> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Text("isi $stateForm"),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            //   child: Text("isi $stateForm"),
+            // ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: TextFormField(

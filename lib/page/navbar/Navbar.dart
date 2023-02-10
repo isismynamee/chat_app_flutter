@@ -105,18 +105,71 @@ class _NavbarDynamicState extends State<NavbarDynamic> {
           ),
         ),
         body: pages[currentIndex],
-        backgroundColor: Colors.blueGrey[50],
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey[700],
-          currentIndex: currentIndex,
-          onTap: onTap,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined),label: "Home", backgroundColor: Colors.blue),
-            BottomNavigationBarItem(icon: Icon(Icons.search_outlined),label: "Search", backgroundColor: Colors.blue),
-            BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline_outlined),label: "Add", backgroundColor: Colors.blue),
-            BottomNavigationBarItem(icon: Icon(Icons.mail_outline_outlined),label: "Message", backgroundColor: Colors.blue),
-          ],
+        // backgroundColor: Colors.blueGrey[50],
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.blue,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Stack(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        onTap(0);
+                      }, 
+                      icon: Icon(
+                        Icons.home_outlined, 
+                        color: currentIndex == 0 ? Colors.white : Colors.black,
+                        size: 25,
+                      )
+                    ),
+                    Positioned(
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        "Home",
+                        style: TextStyle(
+                          fontSize: 10
+                        ),
+                      ),
+                      bottom: 0,
+                    )
+                  ],
+                ),
+                IconButton(
+                  onPressed: () {
+                    onTap(1);
+                  }, 
+                  icon: Icon(
+                    Icons.search_outlined, 
+                    color: currentIndex == 1 ? Colors.white : Colors.black,
+                    size: 25,
+                  )
+                ),
+                IconButton(
+                  onPressed: () {
+                    onTap(2);
+                  }, 
+                  icon: Icon(
+                    Icons.add_circle_outline, 
+                    color: currentIndex == 2 ? Colors.white : Colors.black,
+                    size: 25,
+                  )
+                ),
+                IconButton(
+                  onPressed: () {
+                    onTap(3);
+                  }, 
+                  icon: Icon(
+                    Icons.email_outlined, 
+                    color: currentIndex == 3 ? Colors.white : Colors.black,
+                    size: 25,
+                  )
+                ),
+              ],
+            ),
+          )
         )
       )
     );

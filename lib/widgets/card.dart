@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning/page/home/ProductsList/detailProduct.dart';
+import 'package:learning/page/search/ProductsList/detailProduct.dart';
 import 'package:learning/widgets/ratingProducts.dart';
 
 class CardLists extends StatelessWidget {

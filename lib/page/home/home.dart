@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:learning/api/productsApi.dart';
-import 'package:learning/class/Products/ProductsClass.dart';
-import 'package:learning/page/home/ProductsList/products.dart';
-import 'package:learning/widgets/card.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,8 +10,14 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: productsList(),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(10)
+      ),
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      width: MediaQuery.of(context).size.width,
+      // child: 
     );
   }
 }
