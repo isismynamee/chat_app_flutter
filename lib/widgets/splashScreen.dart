@@ -22,27 +22,29 @@ class _splashScreenState extends State<splashScreen> {
     });
   }
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.white,
-        width: MediaQuery.of(context).size.width,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                "assets/gif/shoes.gif",
-                width: 100,
-                height: 100,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  bigText(text: "Shoes"),
-                  textSmall(text: "Finding")
-            ],
-              )
-            ],
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          color: Colors.white,
+          width: MediaQuery.of(context).size.width,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/gif/shoes.gif",
+                  width: 100,
+                  height: 100,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    bigText(text: "Shoes"),
+                    textSmall(text: "Finding")
+              ],
+                )
+              ],
+            ),
           ),
         ),
       ),
